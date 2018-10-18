@@ -2,6 +2,15 @@ import { template as lodashTemplate } from 'lodash';
 
 const COMPONENTS = [];
 
+function initApp() {
+    COMPONENTS.forEach(component => {
+        document.querySelectorAll(component.selector).forEach(node => {
+            const componentInstanse = new component.class();            
+            node.innerHTML = component.template(componentInstanse);
+        });
+    });
+}
+
 function Component(config) {
     config.template = lodashTemplate(config.template);
     return function(target) {
@@ -38,3 +47,5 @@ class todoListComponent {
         this.todos.push({ text: 'Do laundry'});
     }
 }
+
+initApp();
