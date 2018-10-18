@@ -46,6 +46,19 @@ class todoListComponent {
         this.todos.push({ text: 'Buy milk'});
         this.todos.push({ text: 'Do laundry'});
     }
+
+    @event('click', 'li')
+    onClick(e) {
+        this.todos.map(todo => {
+            if (todo.text === e.target.innerText.trim()) {
+                todo.done = !todo.done;
+            }
+
+            return todo;
+        })
+        
+        return true;
+    }
 }
 
 initApp();
