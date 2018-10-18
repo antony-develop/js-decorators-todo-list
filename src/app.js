@@ -19,6 +19,20 @@ function Component(config) {
     }
 }
 
+function event(type, selector) {
+    return function(target, key, descriptor) {
+        if (!target._events) target._events = {};
+        if (!target._events[type]) target._events[type] = [];
+
+        target._events[type].push({
+            selector,
+            func: descriptor.value
+        });
+
+        return descriptor;
+    }
+}
+
 @Component({
     selector: 'my-app',
     template: `
