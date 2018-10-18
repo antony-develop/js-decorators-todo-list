@@ -86,6 +86,17 @@ class todoListComponent {
         
         return true;
     }
+
+    @event('keypress', 'input')
+    onKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.todos.push({
+                text: e.target.value
+            });
+
+            return true;
+        }
+    }
 }
 
 initApp();
