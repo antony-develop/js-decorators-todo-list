@@ -6,7 +6,20 @@ function initApp() {
     COMPONENTS.forEach(component => {
         document.querySelectorAll(component.selector).forEach(node => {
             const componentInstanse = new component.class();            
-            node.innerHTML = component.template(componentInstanse);
+            node.innerHTML = component.template(componentInstanse);            
+
+            Object.keys(componentInstanse._events).forEach(eventType => {
+                node.addEventListener(eventType, (e) => {
+                    componentInstanse._events[eventType].forEach(eventTypeInstance => {
+                        if (e.target.matches(eventTypeInstance.selector)) {
+                            let rerender = eventTypeInstance.func.call(componentInstanse, e);
+                            if (rerender) {
+                                node.innerHTML = component.template(componentInstanse); 
+                            }
+                        }
+                    })
+                })
+            })
         });
     });
 }
