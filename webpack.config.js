@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         app: [
-            'babel-polyfill',
+            '@babel/polyfill',
             './src/app.js'
         ]
     },
@@ -17,10 +17,7 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env']
-                    }
+                    loader: 'babel-loader'
                 }
             }
         ]
