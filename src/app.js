@@ -1,5 +1,15 @@
 import { template as lodashTemplate } from 'lodash';
 
+const COMPONENTS = [];
+
+function Component(config) {
+    config.template = lodashTemplate(config.template);
+    return function(target) {
+        config.class = target;
+        COMPONENTS.push(config);
+    }
+}
+
 @Component({
     selector: 'my-app',
     template: `
