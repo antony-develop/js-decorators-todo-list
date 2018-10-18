@@ -87,6 +87,13 @@ class todoListComponent {
         return true;
     }
 
+    @event('click', '.delete')
+    onItemDeleteClick(e) {
+        this.todos = this.todos.filter(todo => todo.text != e.target.closest('li').innerText.trim());
+        
+        return true;
+    }
+
     @event('keypress', 'input')
     onKeyPress(e) {
         if (e.key === 'Enter') {
