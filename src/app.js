@@ -51,7 +51,7 @@ function event(type, selector) {
     template: `
         <div class="container">
             <div class="row">
-                <div class="col-lg-1 mt-3">
+                <div class="col-lg-12 mt-3">
                     <h1>Todo list</h1>
                     <input type="text" class="form-control" placeholder="Add todo">                        
                     <hr>
